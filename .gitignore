@@ -1,3 +1,24 @@
-   node_modules
-   .env
-   dist
+# Dependencies - never commit these
+node_modules/
+
+# Environment variables - NEVER commit these (they contain secrets)
+.env
+server/.env
+client/.env
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
