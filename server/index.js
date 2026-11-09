@@ -14,8 +14,15 @@ const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 const notFound = require('./middleware/notFound');
 
-// --- Route imports (more will be added in Phase 3) ---
-const healthRoutes = require('./routes/health');
+// --- Route imports ---
+const healthRoutes     = require('./routes/health');
+const projectRoutes    = require('./routes/projects');
+const memberRoutes     = require('./routes/members');
+const taskRoutes       = require('./routes/tasks');
+const noteRoutes       = require('./routes/notes');
+const milestoneRoutes  = require('./routes/milestones');
+const dashboardRoutes  = require('./routes/dashboard');
+const summaryRoutes    = require('./routes/summary');
 
 // Create the Express application
 const app = express();
@@ -60,8 +67,16 @@ const apiLimiter = rateLimit({
 app.use('/api', apiLimiter);
 
 // ── Routes ────────────────────────────────────────────────────────────────────
-app.use('/api/health', healthRoutes);
-// (Phase 3 will add: projects, members, tasks, notes, milestones, dashboard, summary)
+app.use('/api/health',    healthRoutes);
+app.use('/api/projects',  projectRoutes);
+
+// Project-scoped sub-resources — mergeParams:true inside each router reads :projectId
+app.use('/api/projects/:projectId/members',    memberRoutes);
+app.use('/api/projects/:projectId/tasks',      taskRoutes);
+app.use('/api/projects/:projectId/notes',      noteRoutes);
+app.use('/api/projects/:projectId/milestones', milestoneRoutes);
+app.use('/api/projects/:projectId/dashboard',  dashboardRoutes);
+app.use('/api/projects/:projectId/summary',    summaryRoutes);
 
 // ── 404 handler — catches any URL that did not match a route ──────────────────
 app.use(notFound);
