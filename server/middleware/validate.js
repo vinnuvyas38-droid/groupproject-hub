@@ -15,7 +15,8 @@ const validate = (schema, source = 'body') => {
 
     if (!result.success) {
       // Turn Zod's error list into our standard field-level error array
-      const errors = result.error.errors.map((e) => ({
+      // Note: Zod v4 uses .issues (not .errors)
+      const errors = result.error.issues.map((e) => ({
         field: e.path.join('.') || 'unknown',
         message: e.message,
       }));
