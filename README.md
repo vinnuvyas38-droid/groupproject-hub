@@ -1,4 +1,7 @@
 # GroupProject Hub 🎓
+- **Live app:** https://groupproject-hub.vercel.app
+- **API:** https://groupproject-hub.onrender.com/api
+- **GitHub:** https://github.com/vinnuvyas38-droid/groupproject-hub
 
 > **A centralized MERN workspace designed for student teams to track deliverables, milestones, meeting records, and individual accountability.**
 
